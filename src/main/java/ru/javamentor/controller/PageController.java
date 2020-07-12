@@ -158,5 +158,12 @@ public class PageController {
         userService.updateUser(userFromBD);
         return "redirect:/admin/allUsers";
     }
+
+    @GetMapping("/find/author/{authorId}")
+    public String topicsByAuthor(@PathVariable Long authorId, Model model) {
+        model.addAttribute("themes", themeService.getAllThemes());
+        model.addAttribute("listOfTopics", topicService.getAllTopicsByUserId(authorId));
+        return "all_author_topics";
+    }
 }
 
